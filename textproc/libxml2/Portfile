@@ -31,10 +31,17 @@ depends_build       port:pkgconfig
 
 depends_lib         port:libiconv \
                     path:lib/pkgconfig/icu-uc.pc:icu \
-                    port:xz \
                     port:zlib
 
-use_xz              yes
+if {${os.platform} eq "darwin" && ${os.major} < 14 && ${cxx_stdlib} eq "libc++" && ![file executable ${prefix}/bin/xz]} {
+    # libxml2 is required to build clang-3.7, which is required to build xz on older versions
+    depends_extract     port:xz-bootstrap
+    extract.suffix      .tar.xz
+    extract.cmd         ${prefix}/libexec/xz-bootstrap/bin/xz
+} else {
+    depends_lib         port:xz-bootstrap
+    use_xz              yes
+}
 
 patchfiles-append   include.patch
 
