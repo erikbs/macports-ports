@@ -4,11 +4,11 @@ PortSystem                      1.0
 PortGroup                       python 1.0
 PortGroup                       github 1.0
 
-github.setup        madmaze pytesseract 0.3.2 v
+github.setup        madmaze pytesseract 0.3.13 v
 
 name                py-pytesseract
 
-python.versions     38
+python.versions     38 39 310 311 312 313
 
 platforms           {darwin any}
 supported_archs     noarch
@@ -18,9 +18,9 @@ categories-append   graphics
 description         Python-tesseract is a python wrapper for Google's Tesseract-OCR
 long_description    {*}${description}
 
-checksums           rmd160  575f2587a9e1e9285384f3335fa3ef348c9468f4 \
-                    sha256  8d44012e14009e229d0cd2166c2ce51e1db8bdbd5a92580f94e17f1ef4c0bb9f \
-                    size    331627
+checksums           rmd160  321278da9946ac63a54b90f50fd8ebacd54e5597 \
+                    sha256  b1a9a35245bc324cdafaa417f98dd7119aeac150512289f2df2df1f3ffeacae4 \
+                    size    1099187
 
 if {${name} ne ${subport}} {
     depends_lib-append  \
