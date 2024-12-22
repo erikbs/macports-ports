@@ -1,0 +1,32 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           perl5 1.0
+
+perl5.branches      5.28 5.30 5.32 5.34
+perl5.setup         LWP-Protocol-socks 1.7 ../../authors/id/O/OA/OALDERS/
+license             {Artistic-1 GPL}
+maintainers         nomaintainer
+
+platforms           {darwin any}
+supported_archs     noarch
+
+description         LWP::Protocol::socks - socks support for libwww-perl
+long_description    The LWP::Protocol::socks module used to be bundled with p5-libwww-perl, \
+                    but it was unbundled in v6.02 so that dependencies could be declared \
+                    properly.  Ports that need socks support can just declare their \
+                    dependency on ${name} and will no longer need to know what \
+                    underlying modules to install.
+
+checksums           rmd160  fb036c5601d0623a80a39ee3c7cf845a13c6d2a1 \
+                    sha256  768c7f80dc20a8e91aa7868f548193edb10dca16039519d97dff2690cbb40b4e \
+                    size    4570
+
+if {${perl5.major} != ""} {
+    depends_lib-append \
+                    port:p${perl5.major}-io-socket-ssl \
+                    port:p${perl5.major}-io-socket-socks \
+                    port:p${perl5.major}-libwww-perl \
+                    port:p${perl5.major}-mozilla-ca \
+                    port:p${perl5.major}-lwp-protocol-https
+}
